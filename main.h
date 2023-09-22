@@ -32,17 +32,17 @@ struct ftt
 typedef struct ftt ft_t;
 int Handl_prnt(const char *ftt, int *iptr, va_list lst, char h_buf[],
 		int flags, int w, int prs, int size);
-int Handl_write_chr(char c, char buffer[],
+int Handl_write_chr(char c, char h_buf[],
 		int flags, int w, int prs, int size);
-int write_number_fn(int posit, int index, char buff[],
-		int flag, int w, int prs, int size);
-int write_n_fn(int index, char buff[], int flag,
+int write_number_fn(int posit, int index, char h_buf[],
+		int flags, int w, int prs, int size);
+int write_n_fn(int index, char h_buf[], int flag,
 		int w, int prec, int length, char padding, char extra_c);
-int write_pointer_fn(char buff[], int index, int l,
+int write_pointer_fn(char h_buf[], int index, int l,
 		int w, int flag, char padding, char extra_c, int padd_start);
-int write_unsigned_fn(int neg, int index, char buff[],
-		int flag, int w, int prs, int size);
-void pr_Buff(char buffer[], int *buf_in);
+int write_unsigned_fn(int neg, int index, char h_buf[],
+		int flags, int w, int prs, int size);
+void pr_Buff(char h_buf[], int *buf_in);
 int pr_char_fn(va_list lst, char h_buf[],
 		int flags, int w, int prs, int size);
 int pr_string_fn(va_list lst, char h_buf[],
@@ -76,13 +76,13 @@ int pr_reverse_fn(va_list lst, char h_buf[],
 int pr_rotString_fn(va_list lst, char h_buf[],
 		int flags, int w, int prs, int size);
 int write_ch_fn(char ch, char h_buf[],
-		int flag, int w, int prs, int size);
+		int flags, int w, int prs, int size);
 int write_number_fn(int posit, int index, char h_buf[],
-		int flag, int w, int prs, int size);
-int write_n_fn(int index, char h_buf[], int flag,
+		int flags, int w, int prs, int size);
+int write_n_fn(int index, char h_buf[], int flags,
 		int w, int prec, int l, char padding, char add_c);
 int write_pointer_fn(char buff[], int index, int l,
-		int w, int flag, char padding, char extra_c, int padd_start);
+		int w, int flags; char padding, char extra_c, int padd_start);
 int write_unsigned_fn(int neg, int index, char h_buf[],
 		int flag, int w, int prs, int size);
 int k_printable_fn(char);

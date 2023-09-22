@@ -49,39 +49,30 @@ int pr_binary_fn(va_list lst, char h_buf[],
  * get_flags - Calculates active flags
  * @format: Formatted string in which to print the arguments
  * @i: take a parameter.
- * Return: Flags:
+ * Return: the flags
  */
 int get_flags(const char *format, int *i)
 {
-	/* - + 0 # ' ' */
-	/* 1 2 4 8  16 */
-	int j, curr_i;
+	/* - + 0 # ' ' */ /* 1 2 4 8  16 */
+	int present;
+	int j;
 	int flags = 0;
-	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
-	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
+	const char FLG_CH[] = {'-', '+', '0', '#', ' ', '\0'};
+	const int FLG_ARR[] = {MINUS_FM, BF_PLUS, ZERO_FM, HASHTAG_H, BF_SPACE, 0};
 
-	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
+	for (present = *i + 1; format[present] != '\0'; present++)
 	{
-		for (j = 0; FLAGS_CH[j] != '\0'; j++)
-			if (format[curr_i] == FLAGS_CH[j])
+		for (j = 0; FLG_CH[j] != '\0'; j++)
+			if (format[present] == FLG_CH[j])
 			{
-				flags |= FLAGS_ARR[j];
+				flags |= FLG_ARR[j];
 				break;
 			}
-
-		if (FLAGS_CH[j] == 0)
+		if (FLG_CH[j] == 0)
 			break;
 	}
 
-	*i = curr_i - 1;
+	*i = present - 1;
 
 	return (flags);
 }
-
-
-
-
-
-
-
-

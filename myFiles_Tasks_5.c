@@ -17,16 +17,16 @@ int pr_unsigned_fn(va_list lst, char h_buf[],
 	int k = BUFF_SIZE - 2;
 	unsigned long int nmb = va_arg(lst, unsigned long int);
 
-	nmb = convert_size_unsgnd(nmb, size);
+	nmb = conv_size_unsgnd_fn(nmb, size);
 
 	if (nmb == 0)
-		h_buf[i--] = '0';
+		h_buf[k--] = '0';
 
 	h_buf[BUFF_SIZE - 1] = '\0';
 
 	while (nmb > 0)
 	{
-		h_buf[i--] = (nmb % 10) + '0';
+		h_buf[k--] = (nmb % 10) + '0';
 		nmb = nmb / 10;
 	}
 	k++;
@@ -52,7 +52,7 @@ int pr_int_fn(va_list lst, char h_buf[],
 
 	n = conv_size_number_fn(n, size);
 	if (n == 0)
-		h_buf[i--] = '\0';
+		h_buf[k--] = '\0';
 	nmb = (unsigned long int)n;
 	while (nmb > 0)
 	{
@@ -74,7 +74,7 @@ int pr_int_fn(va_list lst, char h_buf[],
  * @lst: arguments list
  * @h_buf: buffer array to handle print
  * @flgs: calculates active flags
- * @w: gets width
+ * @w: width
  * @prs: precision specification
  * @size: the size specifier
  * return: number of chars printed
@@ -83,7 +83,6 @@ int pr_reverse_fn(va_list lst, char h_buf[],
 		int flgs, int w, int prs, int size)
 {	
 	int i;
-	int j;
 	char *str;
 	int contr = 0;
 	
@@ -100,9 +99,9 @@ int pr_reverse_fn(va_list lst, char h_buf[],
 	}
 	for (i = 0; str[i]; i++)
 		;
-	for (j = j - 1; j >= 0; j--)
+	for (i = i - 1; i >= 0; i--)
 	{
-		char z = str[j];
+		char z = str[i];
 		write(1, &z, 1);
 		contr++;
 	}
@@ -132,11 +131,11 @@ int pr_rotstring_fn(va_list lst, char h_buf[],
 		"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 	
 	contr = 0;
-	UNUSED(h_buf);
-	UNUSED(flgs);
-	UNUSED(w);
-	UNUSED(prs);
-	UNUSED(size);
+	UNUSD(h_buf);
+	UNUSD(flgs);
+	UNUSD(w);
+	UNUSD(prs);
+	UNUSD(size);
 	pt_s = va_arg(lst, char *);
 	if (pt_s == NULL)
 		pt_s = "(AHYY)";
