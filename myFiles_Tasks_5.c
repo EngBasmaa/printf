@@ -40,7 +40,7 @@ int pr_unsigned_fn(va_list lst, char h_buf[],
  * @w:  width
  * @prs: precision specification
  * @size: specifier size
- * return: number of printed chars
+ * Return: number of printed chars
  */
 int pr_int_fn(va_list lst, char h_buf[],
 			  int flgs, int w, int prs, int size)
@@ -77,7 +77,7 @@ int pr_int_fn(va_list lst, char h_buf[],
  * @w: width
  * @prs: precision specification
  * @size: the size specifier
- * return: number of chars printed
+ * Return: number of chars printed
  */
 int pr_reverse_fn(va_list lst, char h_buf[],
 				  int flags, int w, int prs, int size)
@@ -102,6 +102,7 @@ int pr_reverse_fn(va_list lst, char h_buf[],
 	for (k = k - 1; k >= 0; k--)
 	{
 		char z = arr[k];
+
 		write(1, &z, 1);
 		contr++;
 	}
@@ -115,27 +116,26 @@ int pr_reverse_fn(va_list lst, char h_buf[],
  * @w:  width
  * @prs: precision specification
  * @size: size specifier
- * return: num of printed chars
+ * Return: num of printed chars
  */
 int pr_rotstring_fn(va_list lst, char h_buf[],
 					int flags, int w, int prs, int size)
 {
 	unsigned int j;
-	char x;
-	int contr;
-	char *arr;
+	char x, *char;
+	int contr = 0;
 	unsigned int i;
 	char i_arr[] =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char o_arr[] =
 		"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	contr = 0;
 	UNUSD(h_buf);
 	UNUSD(flags);
 	UNUSD(w);
 	UNUSD(prs);
 	UNUSD(size);
+
 	arr = va_arg(lst, char *);
 	if (arr == NULL)
 		arr = "(AHYY)";
@@ -163,9 +163,9 @@ int pr_rotstring_fn(va_list lst, char h_buf[],
 /**
  * g_precision_fn - calculate the printing precision
  * @format: formatted string where you print the arguments
- * i: printed arguments list
- * lst: arguments list
- * return: returns the precision of printing
+ * @i: printed arguments list
+ * @lst: arguments list
+ * Return: returns the precision of printing
  */
 int g_precision_fn(const char *format, int *i, va_list lst)
 {

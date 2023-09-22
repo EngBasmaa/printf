@@ -4,7 +4,8 @@
 /**
  * pr_Buff - to print the contents of the buffer if it is existed
  * @h_buf: an array of characters
- * @buf_in: Index at which to add next char, represents the length.
+ * @buf_in: Index at which to add next char, represents the length
+ * Return: return nothing
  */
 void pr_Buff(char h_buf[], int *buf_in)
 {
@@ -16,7 +17,7 @@ void pr_Buff(char h_buf[], int *buf_in)
  * conv_size_unsgnd_fn - to  cast specifies size of a number
  * @nmb: number to be casted
  * @size:  number indicating the type to be casted
- * return: the num casted value
+ * Return: the num casted value
  */
 long int conv_size_unsgnd_fn(unsigned long int nmb, int size)
 {
@@ -30,7 +31,7 @@ long int conv_size_unsgnd_fn(unsigned long int nmb, int size)
  * conv_size_number_fn - to cast a number to a compatable size
  * @nmb: casted number
  * @size: number indicating the casted ones
- * return: to return the casted value of num
+ * Return: to return the casted value of num
  */
 long int conv_size_number_fn(long int nmb, int size)
 {
@@ -64,7 +65,7 @@ int g_size_fn(const char *format, int *i)
 /**
  * k_digitchar_fn - to check if the char is digit or not
  * @c: evaluated char
- * return: returns 1 when digit, otherwise(0)
+ * Return: returns 1 when digit, otherwise(0)
  */
 int k_digitchar_fn(char c)
 {
@@ -72,4 +73,3 @@ int k_digitchar_fn(char c)
 		return (1);
 	return (0);
 }
-

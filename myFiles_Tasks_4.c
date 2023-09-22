@@ -5,17 +5,17 @@
  * pr_pointer_fn - prints the value of a poiter variable
  * @lst: arguments list
  * @h_buf: buffer array to handle print
- * @flgs: to calculate active flags
+ * @flags: to calculate active flags
  * @w: width
  * @prs: specification precision
  * @size: specifier size
- * return: number of the printed chars
+ * Return: number of the printed chars
  */
 int pr_pointer_fn(va_list lst, char h_buf[], int flags,
 				  int w, int prs, int size)
 {
 	int pad_start = 1;
-	char add_c = 0, pad ='';
+	char add_c = 0, pad = '';
 	int l = 2;
 	int index = BUFF_SIZE - 2;
 	unsigned long nmb_add;
@@ -41,7 +41,7 @@ int pr_pointer_fn(va_list lst, char h_buf[], int flags,
 	else if (flags & BF_PLUS)
 		add_c = '+', l++;
 	else if (flags & BF_SPACE)
-		add_c ='', l++;
+		add_c = '', l++;
 	index++;
 	return (write_pointer_fn(h_buf, index, l,
 							 w, flags, pad, add_c, pad_start));
