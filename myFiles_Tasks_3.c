@@ -13,11 +13,11 @@ int app_hexa_fn(char asci, char h_buf[], int i)
 	char arr[] = "0123456789ABCDEF";
 
 	if (asci < 0)
-		asci *= -1;
+		asci = asci * (-1);
 	h_buf[i++] = '\\';
-    h_buf[i++] = arr[asci / 16];
-	h_buf[i] = arr[asci % 16];
 	h_buf[i++] = 'x';
+	h_buf[i++] = arr[asci / 16];
+	h_buf[i] = arr[asci % 16];
 	return (3);
 }
 /**
@@ -26,28 +26,28 @@ int app_hexa_fn(char asci, char h_buf[], int i)
  * @h_buf: buffer array to handle print
  * @flgs: to calculate active flags
  * @w: gets width
- * @prs: specification precision 
+ * @prs: specification precision
  * @size: the size specifier
  * return: returns the number of printed chars
  */
 int pr_non_printable_fn(va_list lst, char h_buf[],
-		int flgs, int w, int prs, int size)
+						int flgs, int w, int prs, int size)
 {
 	int k = 0, offst = 0;
-	char *st = va_arg(lst, char *);
+	char *arr = va_arg(lst, char *);
 
 	UNUSD(flgs);
 	UNUSD(w);
 	UNUSD(prs);
 	UNUSD(size);
-	if (st == NULL)
+	if (arr == NULL)
 		return (write(1, "(null)", 6));
-	while (st[k] != '\0')
+	while (arr[k] != '\0')
 	{
-		if (k_printable_fn(st[k]))
-			h_buf[k + offst] = st[k];
+		if (k_printable_fn(arr[k]))
+			h_buf[k + offst] = arr[k];
 		else
-			offst = offst + app_hexa_fn(st[k], h_buf, k + offst);
+			offst = offst + app_hexa_fn(arr[k], h_buf, k + offst);
 		k++;
 	}
 	h_buf[offst + k] = '\0';
@@ -56,7 +56,7 @@ int pr_non_printable_fn(va_list lst, char h_buf[],
 /**
  * k_printable_fn - to evaluate if a char is printable
  * @c: the evaluated char
- * return: (1) when printable, otherwise (0)
+ * return: 1 when printable, otherwise 0
  */
 int k_printable_fn(char c)
 {

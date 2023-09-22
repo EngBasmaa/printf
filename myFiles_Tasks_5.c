@@ -12,7 +12,7 @@
  * Return: printed chars num
  */
 int pr_unsigned_fn(va_list lst, char h_buf[],
-	int flags, int w, int prs, int size)
+				   int flags, int w, int prs, int size)
 {
 	int k = BUFF_SIZE - 2;
 	unsigned long int nmb = va_arg(lst, unsigned long int);
@@ -43,7 +43,7 @@ int pr_unsigned_fn(va_list lst, char h_buf[],
  * return: number of printed chars
  */
 int pr_int_fn(va_list lst, char h_buf[],
-		int flgs, int w, int prs, int size)
+			  int flgs, int w, int prs, int size)
 {
 	int neg = 0;
 	int k = BUFF_SIZE - 2;
@@ -51,57 +51,57 @@ int pr_int_fn(va_list lst, char h_buf[],
 	long int n = va_arg(lst, long int);
 
 	n = conv_size_number_fn(n, size);
+	if (n < 0)
+	{
+		nmb = (unsigned long int)(n * (-1));
+		neg = 1;
+	}
 	if (n == 0)
 		h_buf[k--] = '\0';
+	h_buf[BUFF_SIZE - 1] = '\0';
 	nmb = (unsigned long int)n;
 	while (nmb > 0)
 	{
 		h_buf[k--] = (nmb % 10) + '0';
 		nmb = nmb / 10;
 	}
-	if (n < 0)
-	{
-		nmb = (unsigned long int)((-1) * n);
-		neg = 1;
-	}
-	
 	k++;
 	return (write_number_fn(neg, k,
-				h_buf, flgs, w, prs, size));
+							h_buf, flgs, w, prs, size));
 }
 /**
  * pr_reverse_fn -prints reverse string
  * @lst: arguments list
  * @h_buf: buffer array to handle print
- * @flgs: calculates active flags
+ * @flags: calculates active flags
  * @w: width
  * @prs: precision specification
  * @size: the size specifier
  * return: number of chars printed
  */
 int pr_reverse_fn(va_list lst, char h_buf[],
-		int flgs, int w, int prs, int size)
-{	
-	int i;
-	char *str;
+				  int flags, int w, int prs, int size)
+{
+	int k;
+	char *arr;
 	int contr = 0;
-	
+
 	UNUSD(w);
 	UNUSD(size);
 	UNUSD(h_buf);
-	UNUSD(flgs);
-	
-	str = va_arg(lst, char *);
-	if (str == NULL)
+	UNUSD(flags);
+
+	arr = va_arg(lst, char *);
+	if (arr == NULL)
 	{
-		str = "(NULL)";
+		arr = "(NULL)";
 		UNUSD(prs);
 	}
-	for (i = 0; str[i]; i++)
+	for (k = 0; arr[k]; k++)
 		;
-	for (i = i - 1; i >= 0; i--)
+	for (k = k - 1; k >= 0; k--)
 	{
-		char z = str[i];
+		char z = arr[k];
 		write(1, &z, 1);
 		contr++;
 	}
@@ -111,39 +111,39 @@ int pr_reverse_fn(va_list lst, char h_buf[],
  * pr_rotstring_fn - print a string in rot123
  * @lst: arguments list
  * @h_buf: buffer array for print handling
- * @flgs: calculate flags active
+ * @flags: calculate flags active
  * @w:  width
  * @prs: precision specification
  * @size: size specifier
  * return: num of printed chars
  */
 int pr_rotstring_fn(va_list lst, char h_buf[],
-		int flgs, int w, int prs, int size)
-{	
+					int flags, int w, int prs, int size)
+{
 	unsigned int j;
 	char x;
 	int contr;
-	char *pt_s;
+	char *arr;
 	unsigned int i;
 	char i_arr[] =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char o_arr[] =
 		"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	
+
 	contr = 0;
 	UNUSD(h_buf);
-	UNUSD(flgs);
+	UNUSD(flags);
 	UNUSD(w);
 	UNUSD(prs);
 	UNUSD(size);
-	pt_s = va_arg(lst, char *);
-	if (pt_s == NULL)
-		pt_s = "(AHYY)";
-	for (i = 0; pt_s[i]; i++)
+	arr = va_arg(lst, char *);
+	if (arr == NULL)
+		arr = "(AHYY)";
+	for (i = 0; i_arr[i]; i++)
 	{
 		for (j = 0; i_arr[j]; j++)
 		{
-			if (i_arr[j] == pt_s[i])
+			if (i_arr[j] == arr[i])
 			{
 				x = o_arr[j];
 				write(1, &x, 1);
@@ -153,7 +153,7 @@ int pr_rotstring_fn(va_list lst, char h_buf[],
 		}
 		if (!i_arr[j])
 		{
-			x = pt_s[i];
+			x = arr[i];
 			write(1, &x, 1);
 			contr++;
 		}
@@ -164,10 +164,10 @@ int pr_rotstring_fn(va_list lst, char h_buf[],
  * g_precision_fn - calculate the printing precision
  * @format: formatted string where you print the arguments
  * i: printed arguments list
- * arg_lst: list of arguments
+ * lst: arguments list
  * return: returns the precision of printing
  */
-int g_precision_fn(const char *format, int *i, va_list arg_lst)
+int g_precision_fn(const char *format, int *i, va_list lst)
 {
 	int present = *i + 1;
 	int prs = -1;
@@ -180,14 +180,14 @@ int g_precision_fn(const char *format, int *i, va_list arg_lst)
 		if (format[present] == '*')
 		{
 			present++;
-			prs = va_arg(arg_lst, int);
+			prs = va_arg(lst, int);
 			break;
 		}
 		else if (k_digitchar_fn(format[present]))
 		{
-			prs *= 10;
-			prs += format[present] - '0';
-		} 
+			prs = prs * 10;
+			prs = prs + format[present] - '0';
+		}
 		else
 			break;
 	}

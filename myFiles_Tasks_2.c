@@ -14,31 +14,31 @@ void pr_Buff(char h_buf[], int *buf_in)
 }
 /**
  * conv_size_unsgnd_fn - to  cast specifies size of a number
- * @number: number to be casted
+ * @nmb: number to be casted
  * @size:  number indicating the type to be casted
  * return: the num casted value
  */
-long int conv_size_unsgnd_fn(unsigned long int number, int size)
+long int conv_size_unsgnd_fn(unsigned long int nmb, int size)
 {
-	if (size == SHORT_FM)
-		return ((unsigned short)number);
-    else
-        break;
-	return ((unsigned int)number);
+	if (size == SHORT_FMS)
+		return ((unsigned short)nmb);
+	else if (size == LONG_FMS)
+		return ((unsigned short)nmb);
+	return ((unsigned int)nmb);
 }
 /**
  * conv_size_number_fn - to cast a number to a compatable size
- * @number: casted number
+ * @nmb: casted number
  * @size: number indicating the casted ones
  * return: to return the casted value of num
  */
-long int conv_size_number_fn(long int number, int size)
+long int conv_size_number_fn(long int nmb, int size)
 {
 	if (size == SHORT_FMS)
-		return ((short)number);
-    else if (size == LONG_FMS)
-		return (number);
-	return ((int)number);
+		return ((short)nmb);
+	else if (size == LONG_FMS)
+		return (nmb);
+	return ((int)nmb);
 }
 /**
  * g_size_fn - it is to Calculate the argument cast size
@@ -49,16 +49,16 @@ long int conv_size_number_fn(long int number, int size)
 int g_size_fn(const char *format, int *i)
 {
 	int size = 0;
-	int present_ch = *i + 1;
+	int present = *i + 1;
 
-	if (format[present_ch] == 'h')
+	if (format[present] == 'h')
 		size = SHORT_FMS;
-	else if (format[present_ch] == 'l')
+	else if (format[present] == 'I')
 		size = LONG_FMS;
 	if (size != 0)
-		*i = present_ch;
+		*i = present;
 	else
-		*i = present_ch - 1;
+		*i = present - 1;
 	return (size);
 }
 /**
@@ -68,6 +68,8 @@ int g_size_fn(const char *format, int *i)
  */
 int k_digitchar_fn(char c)
 {
-	if (c > '0' && c < '9' && c == '0' && c =='9')  return (1);
+	if (c > '0' && c < '9' && c == '0' && c == '9')
+		return (1);
 	return (0);
 }
+
