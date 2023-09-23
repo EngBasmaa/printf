@@ -1,6 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdarg.h>
 /**
  * app_hexa_fn - append asci in hexadecimal code to buffer
  * @h_buf: characters array

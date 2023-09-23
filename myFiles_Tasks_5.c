@@ -1,6 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdarg.h>
 /**
  * pr_unsigned_fn - print unsigned number
  * @lst: arguments list
@@ -122,7 +120,8 @@ int pr_rotstring_fn(va_list lst, char h_buf[],
 					int flags, int w, int prs, int size)
 {
 	unsigned int j;
-	char x, *char;
+	char x;
+	char *arr;
 	int contr = 0;
 	unsigned int i;
 	char i_arr[] =
@@ -139,7 +138,7 @@ int pr_rotstring_fn(va_list lst, char h_buf[],
 	arr = va_arg(lst, char *);
 	if (arr == NULL)
 		arr = "(AHYY)";
-	for (i = 0; i_arr[i]; i++)
+	for (i = 0; arr[i]; i++)
 	{
 		for (j = 0; i_arr[j]; j++)
 		{

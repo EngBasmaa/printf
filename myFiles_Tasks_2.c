@@ -1,6 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdarg.h>
 /**
  * pr_Buff - to print the contents of the buffer if it is existed
  * @h_buf: an array of characters

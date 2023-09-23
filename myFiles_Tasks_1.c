@@ -1,6 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdarg.h>
 /**
  * pr_string_fn - Prints a string
  * @lst: list a of arguments
