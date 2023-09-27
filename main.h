@@ -1,6 +1,6 @@
-#ifndef _PRINTS_H
-#define _PRINTF_H
-#include <limits>
+#ifndef MAIN_H
+#define MAIN_H
+#include <limits.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,12 +25,7 @@ struct ftt
 	char *ftt;
 	int (*iptr)(va_list, char[], int, int, int, int);
 } ftt;
-/**
- * typedef struct ftt ft_t - defines a struct function
- * ftt: its formatt
- * @ft_t: function of struct formatt
- */
-typedef struct ftt ft_t;
+
 int Handl_prnt(const char *ftt, int *index, va_list lst, char h_buf[],
 			   int flags, int w, int prs, int size);
 int Handl_write_chr(char c, char h_buf[],

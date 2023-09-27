@@ -1,6 +1,6 @@
 #include "main.h"
-int Handl_prnt(const char *ftt, int *iptr, va_list lst, char h_buf[],
-			   int flags, int w, int prs, int size);
+int Handl_prnt(const char *ftt, int *iptr, va_list lst,
+		char h_buf[], int flags, int w, int prs, int size);
 /**
  * _printf - to produce output according to a format
  *
@@ -18,7 +18,10 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (!format[2] && format[1] == ' ' && format[0] == '%')
+		return (-1);
 	va_start(lst, format);
 
 	for (k = 0; format && format[k] != '\0'; k++)
