@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 int Handl_prnt(const char *ftt, int *iptr, va_list lst,
 		char h_buf[], int flags, int w, int prs, int size);
 /**

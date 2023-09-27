@@ -101,7 +101,7 @@ int pr_non_printable_fn(va_list lst, char h_buf[],
 	while (arr[k] != '\0')
 	{
 		(k_printable_fn(arr[k])) ? h_buf[k + offst] = arr[k] :
-			offst = offst + app_hexa_fn(arr[k], h_buf, k + offst);
+			offst +=  app_hexa_fn(arr[k], h_buf, k + offst);
 		k++;
 	}
 	h_buf[offst + k] = '\0';

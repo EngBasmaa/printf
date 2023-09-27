@@ -1,4 +1,4 @@
-#ifndef MAIN_H
+i#ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
 #include <stdio.h>
@@ -24,7 +24,13 @@ struct ftt
 	char *ftt;
 	int (*iptr)(va_list, char[], int, int, int, int);
 } ftt;
-
+/**
+ * typedef struct fmt fmt_t - Struct op
+ *
+ * @ftt: The format.
+ * @ftt: The function associated.
+ */
+typedef struct ftt ftt;
 int Handl_prnt(const char *ftt, int *index, va_list lst, char h_buf[],
 			   int flags, int w, int prs, int size);
 int Handl_write_chr(char c, char h_buf[],
