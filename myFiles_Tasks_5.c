@@ -193,3 +193,4 @@ int g_precision_fn(const char *format, int *i, va_list lst)
 	*i = present - 1;
 	return (prs);
 }
+

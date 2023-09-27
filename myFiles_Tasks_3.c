@@ -48,3 +48,4 @@ int g_width_fn(const char *format, int *i, va_list lst)
 	*i = present - 1;
 	return (w);
 }
+

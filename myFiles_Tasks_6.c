@@ -107,3 +107,4 @@ int pr_non_printable_fn(va_list lst, char h_buf[],
 	h_buf[offst + k] = '\0';
 	return (write(1, h_buf, k + offst));
 }
+

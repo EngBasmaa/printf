@@ -49,3 +49,4 @@ int Handl_prnt(const char *ftt, int *index, va_list lst, char h_buf[],
 		}
 	return (prntdchrs);
 }
+

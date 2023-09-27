@@ -71,3 +71,4 @@ int k_digitchar_fn(char c)
 		return (1);
 	return (0);
 }
+

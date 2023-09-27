@@ -126,3 +126,4 @@ int pr_char_fn(va_list lst, char h_buf[],
 
 	return (Handl_write_chr(c, h_buf, flags, w, prs, size));
 }
+

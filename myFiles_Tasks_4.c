@@ -158,3 +158,4 @@ int pr_octal_fn(va_list lst, char h_buf[],
 
 	return (write_unsigned_fn(0, k, h_buf, flags, w, prs, size));
 }
+
