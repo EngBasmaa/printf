@@ -1,5 +1,6 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef _PRINTS_H
+#define _PRINTF_H
+#include <limits>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +22,7 @@
  */
 struct ftt
 {
-	char ftt;
+	char *ftt;
 	int (*iptr)(va_list, char[], int, int, int, int);
 } ftt;
 /**
